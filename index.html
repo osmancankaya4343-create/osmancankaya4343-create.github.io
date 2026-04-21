@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avantgarde Taxi GmbH Dortmund</title>
+  <style>
+    :root{
+      --gold:#d9a514;
+      --gold-2:#f0bc2a;
+      --text:#222;
+      --white:#fff;
+      --shadow:0 12px 30px rgba(0,0,0,.08);
+      --radius:22px;
+      --container:min(1200px, 92%);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:#fff;
+      line-height:1.5;
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    .container{width:var(--container);margin:0 auto}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,.97);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid #eee;
+    }
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      min-height:92px;
+    }
+    .brand-box{
+      background:#fff;
+      border-radius:14px;
+      padding:6px 10px;
+    }
+    .brand-box img{
+      height:58px;
+      width:auto;
+    }
+    nav{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    nav a{
+      font-size:.97rem;
+      font-weight:700;
+      color:#111;
+    }
+    .header-call{
+      background:linear-gradient(180deg, var(--gold-2), var(--gold));
+      color:#111;
+      border-radius:12px;
+      padding:13px 18px;
+      font-weight:800;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      box-shadow:0 8px 20px rgba(217,165,20,.25);
+      white-space:nowrap;
+    }
+    .header-call svg{width:18px;height:18px;fill:#111}
+
+    .hero{
+      position:relative;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.58) 38%, rgba(0,0,0,.35) 100%),
+        url("hero.jpeg") center/cover no-repeat;
+      color:#fff;
+      min-height:730px;
+      display:flex;
+      align-items:center;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.18));
+      pointer-events:none;
+    }
+    .hero .container{
+      position:relative;
+      z-index:1;
+    }
+    .hero-content{
+      max-width:540px;
+      padding:70px 0;
+    }
+    .eyebrow{
+      color:var(--gold-2);
+      font-weight:700;
+      font-size:1.15rem;
+      margin-bottom:16px;
+    }
+    .hero h1{
+      margin:0 0 14px;
+      font-size:clamp(2.8rem, 6vw, 5rem);
+      line-height:1.02;
+      letter-spacing:-.03em;
+    }
+    .hero-lead{
+      margin:0 0 22px;
+      font-size:1.2rem;
+      line-height:1.3;
+      color:#f0f0f0;
+      max-width:460px;
+    }
+    .hero-points{
+      list-style:none;
+      padding:0;
+      margin:0 0 30px;
+      display:grid;
+      gap:12px;
+    }
+    .hero-points li{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      font-size:1.1rem;
+      line-height:1.35;
+    }
+    .tick{
+      width:14px;
+      height:14px;
+      margin-top:4px;
+      flex:0 0 14px;
+      position:relative;
+    }
+    .tick::before{
+      content:"✓";
+      color:var(--gold-2);
+      font-weight:900;
+      position:absolute;
+      inset:-5px 0 0 0;
+      font-size:20px;
+    }
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:16px 22px;
+      border-radius:14px;
+      font-weight:800;
+      font-size:1.02rem;
+      border:1px solid transparent;
+    }
+    .btn svg{width:18px;height:18px}
+    .btn-primary{
+      background:linear-gradient(180deg, var(--gold-2), var(--gold));
+      color:#111;
+      box-shadow:0 10px 24px rgba(217,165,20,.28);
+    }
+    .btn-secondary{
+      background:transparent;
+      color:#fff;
+      border-color:rgba(217,165,20,.75);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);
+    }
+
+    section{padding:80px 0}
+    .section-light{background:#fafafa}
+    .section-dark{
+      background:linear-gradient(180deg, #0b0d10, #111419);
+      color:#fff;
+    }
+    .center-head{
+      text-align:center;
+      margin-bottom:34px;
+    }
+    .kicker{
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:.07em;
+      font-weight:800;
+      font-size:1rem;
+      margin-bottom:10px;
+    }
+    h2{
+      margin:0;
+      font-size:clamp(2rem, 4vw, 3.2rem);
+      line-height:1.1;
+      letter-spacing:-.02em;
+    }
+    .underline{
+      width:54px;
+      height:4px;
+      background:var(--gold);
+      border-radius:999px;
+      margin:16px auto 0;
+    }
+
+    .grid{
+      display:grid;
+      gap:22px;
+    }
+    .services-grid{
+      grid-template-columns:repeat(4, 1fr);
+    }
+    .card{
+      background:#fff;
+      border:1px solid #ebebeb;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px;
+    }
+    .service-card{
+      min-height:210px;
+    }
+    .service-top{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      margin-bottom:16px;
+    }
+    .icon-badge{
+      width:68px;
+      height:68px;
+      border-radius:50%;
+      background:linear-gradient(180deg, var(--gold-2), #c58c06);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 68px;
+      box-shadow:0 10px 22px rgba(217,165,20,.22);
+    }
+    .icon-badge svg{
+      width:32px;
+      height:32px;
+      fill:none;
+      stroke:#fff;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+    .service-card h3{
+      margin:0;
+      font-size:1.7rem;
+      line-height:1.1;
+    }
+    .service-card p{
+      margin:0;
+      color:#444;
+      font-size:1.02rem;
+    }
+
+    .apps-grid{
+      grid-template-columns:1fr 1fr;
+    }
+    .app-card{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(217,165,20,.35);
+      box-shadow:none;
+      color:#fff;
+      padding:24px;
+    }
+    .app-card-inner{
+      display:flex;
+      gap:22px;
+      align-items:center;
+    }
+    .app-logo-real{
+      width:140px;
+      height:140px;
+      border-radius:24px;
+      flex:0 0 140px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px;
+      overflow:hidden;
+    }
+    .app-logo-real img{
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+    }
+    .app-card h3{
+      margin:0 0 6px;
+      color:#f0bc2a;
+      font-size:2rem;
+    }
+    .app-card p{
+      margin:0 0 18px;
+      color:#f1f1f1;
+      font-size:1.06rem;
+    }
+    .app-links{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .store-btn{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 13px;
+      border-radius:12px;
+      background:#0b0b0c;
+      color:#fff;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.2);
+      min-width:120px;
+      justify-content:center;
+    }
+    .store-btn.gold{
+      border-color:rgba(240,188,42,.55);
+    }
+
+    .contact-grid{
+      grid-template-columns:1.05fr 1fr 1.25fr;
+      align-items:stretch;
+    }
+    .contact-panel h2{
+      font-size:3rem;
+      margin-bottom:26px;
+    }
+    .contact-list{
+      display:grid;
+      gap:18px;
+    }
+    .contact-row{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+      font-size:1.06rem;
+    }
+    .contact-row svg{
+      width:23px;
+      height:23px;
+      stroke:#111;
+      stroke-width:2;
+      fill:none;
+      flex:0 0 23px;
+      margin-top:2px;
+    }
+    .contact-row strong{
+      display:block;
+      color:#222;
+      margin-bottom:2px;
+    }
+    .contact-row .gold{
+      color:#ca8f08;
+      font-weight:700;
+    }
+
+    .payment-card h3{
+      margin:0 0 14px;
+      color:#ca8f08;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+      font-size:1.15rem;
+    }
+    .payment-card p{
+      margin:0 0 22px;
+      font-size:1.08rem;
+    }
+    .sumup-logo{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:26px;
+    }
+    .sumup-logo img{
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      object-fit:contain;
+      background:#fff;
+      box-shadow:0 4px 12px rgba(0,0,0,.06);
+    }
+    .sumup-text{
+      font-size:2rem;
+      font-weight:800;
+      letter-spacing:-.03em;
+      text-transform:lowercase;
+    }
+
+    .cards-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      margin-top:8px;
+    }
+    .pay-pill{
+      min-width:84px;
+      height:52px;
+      border:1px solid #ddd;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#fff;
+      box-shadow:0 4px 12px rgba(0,0,0,.04);
+      padding:6px 12px;
+    }
+    .pay-pill img{
+      max-height:28px;
+      max-width:72px;
+      object-fit:contain;
+    }
+
+    .map-wrap{
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      min-height:100%;
+      background:#ddd;
+    }
+    .map-frame{
+      width:100%;
+      height:100%;
+      min-height:360px;
+      border:0;
+      display:block;
+    }
+
+    footer{
+      background:linear-gradient(180deg, #101114, #0b0c0f);
+      color:#f0f0f0;
+      padding-top:0;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:28px;
+      padding:34px 0 26px;
+    }
+    .footer-col h3{
+      margin:0 0 16px;
+      color:var(--gold-2);
+      font-size:1.6rem;
+    }
+    .footer-col p{
+      margin:0 0 10px;
+      color:#f0f0f0;
+      font-size:1.02rem;
+    }
+    .footer-brand{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:center;
+      gap:16px;
+    }
+    .footer-slogan{
+      font-size:2.1rem;
+      font-weight:800;
+      color:var(--gold-2);
+      line-height:1.15;
+    }
+    .car-line{
+      width:240px;
+      height:auto;
+    }
+    .socials{
+      display:flex;
+      gap:14px;
+    }
+    .social{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:2px solid var(--gold);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--gold);
+      font-weight:900;
+      font-size:1.1rem;
+    }
+    .copyright{
+      border-top:1px solid rgba(240,188,42,.35);
+      padding:16px 0 24px;
+      text-align:center;
+      color:#ddd;
+      font-size:1rem;
+    }
+
+    @media (max-width: 1180px){
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .contact-grid{grid-template-columns:1fr;gap:20px}
+      .map-frame{min-height:320px}
+    }
+    @media (max-width: 980px){
+      .header-inner{
+        padding:14px 0;
+        flex-direction:column;
+        justify-content:center;
+      }
+      nav{gap:18px}
+      .apps-grid{grid-template-columns:1fr}
+      .app-card-inner{align-items:flex-start}
+      .footer-grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 720px){
+      .hero{min-height:640px}
+      .hero h1{font-size:3rem}
+      .hero-points li{font-size:1rem}
+      .services-grid{grid-template-columns:1fr}
+      .app-card-inner{flex-direction:column}
+      .app-logo-real{width:110px;height:110px;flex-basis:110px}
+      .contact-panel h2{font-size:2.3rem}
+      nav{justify-content:center}
+      .header-call{width:100%;justify-content:center}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-inner">
+      <div class="brand-box">
+        <img src="logo.jpeg" alt="Avantgarde Taxi Logo">
+      </div>
+
+      <nav>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#apps">Apps</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="#impressum">Impressum</a>
+        <a href="#datenschutz">Datenschutz</a>
+      </nav>
+
+      <a class="header-call" href="tel:+491705055055">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.8 3.5 4.7 6.3 8.1 8.1l2.7-2.7c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V22c0 .6-.4 1-1 1C10.3 23 1 13.7 1 2c0-.6.4-1 1-1h4.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.9z"/></svg>
+        0170 5055055
+      </a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Zuverlässig unterwegs in Dortmund und Umgebung</div>
+
+        <h1>Ihr Taxi-Service<br>für Dortmund</h1>
+
+        <p class="hero-lead">Zuverlässig, freundlich und jederzeit im Einsatz.</p>
+
+        <ul class="hero-points">
+          <li><span class="tick"></span><span>Telefonisch erreichbar: 06:00 – 17:00 Uhr</span></li>
+          <li><span class="tick"></span><span>Fahrbetrieb 24 Stunden / 7 Tage die Woche</span></li>
+          <li><span class="tick"></span><span>Auch buchbar über Taxi Dortmund eG, FREE NOW und Taxi Deutschland</span></li>
+        </ul>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="tel:+491705055055">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8c1.8 3.5 4.7 6.3 8.1 8.1l2.7-2.7c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V22c0 .6-.4 1-1 1C10.3 23 1 13.7 1 2c0-.6.4-1 1-1h4.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.9z"/></svg>
+            Jetzt anrufen
+          </a>
+          <a class="btn btn-secondary" href="#kontakt">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
+            Kontakt ansehen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="leistungen" class="section section-light">
+    <div class="container">
+      <div class="center-head">
+        <div class="kicker">Unsere Leistungen</div>
+        <h2>Sicher, pünktlich, komfortabel</h2>
+        <div class="underline"></div>
+      </div>
+
+      <div class="grid services-grid">
+        <article class="card service-card">
+          <div class="service-top">
+            <div class="icon-badge">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6M7 13h.01M17 13h.01"/>
+              </svg>
+            </div>
+            <h3>Stadtfahrten</h3>
+          </div>
+          <p>Bequeme und zuverlässige Fahrten innerhalb von Dortmund und Umgebung.</p>
+        </article>
+
+        <article class="card service-card">
+          <div class="service-top">
+            <div class="icon-badge">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 16h18M6 16l2-6h8l2 6M12 10V4M9 7l3-3 3 3"/>
+              </svg>
+            </div>
+            <h3>Flughafen- &<br>Transferfahrten</h3>
+          </div>
+          <p>Pünktliche Fahrten zu Flughäfen, Bahnhöfen und wichtigen Terminen.</p>
+        </article>
+
+        <article class="card service-card">
+          <div class="service-top">
+            <div class="icon-badge">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 8v8M8 12h8M5 7h14v10H5zM8 4h8v3"/>
+              </svg>
+            </div>
+            <h3>Krankenfahrten</h3>
+          </div>
+          <p>Sichere und zuverlässige Fahrten zu Arztterminen, Therapien und Kliniken.</p>
+        </article>
+
+        <article class="card service-card">
+          <div class="service-top">
+            <div class="icon-badge">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 7v5l3 2M12 3a9 9 0 100 18 9 9 0 000-18M7 2v4M17 2v4"/>
+              </svg>
+            </div>
+            <h3>24/7 Fahrbetrieb</h3>
+          </div>
+          <p>Unsere Fahrzeuge sind rund um die Uhr für Sie im Einsatz.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="apps" class="section section-dark">
+    <div class="container">
+      <div class="center-head">
+        <div class="kicker">Buchung per App</div>
+        <h2>Bequem per App ein Taxi bestellen</h2>
+        <div class="underline"></div>
+      </div>
+
+      <div class="grid apps-grid">
+        <article class="card app-card">
+          <div class="app-card-inner">
+            <div class="app-logo-real">
+              <img src="freenow-nowe-logo-2025.jpg" alt="FREE NOW Logo">
+            </div>
+
+            <div class="app-content">
+              <h3>FREE NOW</h3>
+              <p>Taxi einfach per App bestellen.</p>
+
+              <div class="app-links">
+                <a class="store-btn gold" href="https://free-now.com/de/" target="_blank" rel="noopener noreferrer">Website</a>
+                <a class="store-btn" href="https://apps.apple.com/de/app/free-now/id357852748" target="_blank" rel="noopener noreferrer">App Store</a>
+                <a class="store-btn" href="https://play.google.com/store/apps/details?id=taxi.android.client" target="_blank" rel="noopener noreferrer">Google Play</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card app-card">
+          <div class="app-card-inner">
+            <div class="app-logo-real">
+              <img src="Taxideutschland.png" alt="Taxi Deutschland Logo">
+            </div>
+
+            <div class="app-content">
+              <h3>Taxi Deutschland</h3>
+              <p>Deutschlandweit Taxi bequem per App buchen.</p>
+
+              <div class="app-links">
+                <a class="store-btn gold" href="https://www.taxi-deutschland.net/" target="_blank" rel="noopener noreferrer">Website</a>
+                <a class="store-btn" href="https://apps.apple.com/de/app/taxi-deutschland/id368952622" target="_blank" rel="noopener noreferrer">App Store</a>
+                <a class="store-btn" href="https://play.google.com/store/apps/details?id=de.taxi.android.app" target="_blank" rel="noopener noreferrer">Google Play</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="section">
+    <div class="container">
+      <div class="grid contact-grid">
+        <div class="contact-panel">
+          <div class="kicker">Kontakt</div>
+          <h2>Wir sind für Sie da</h2>
+
+          <div class="contact-list">
+            <div class="contact-row">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.8 3.5 4.7 6.3 8.1 8.1l2.7-2.7c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V22c0 .6-.4 1-1 1C10.3 23 1 13.7 1 2c0-.6.4-1 1-1h4.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.9z"/></svg>
+              <div><strong>Telefon</strong><span class="gold">0170 5055055</span></div>
+            </div>
+
+            <div class="contact-row">
+              <svg viewBox="0 0 24 24"><path d="M6 9V4h12v5M4 9h16v11H4zM8 13h8"/></svg>
+              <div><strong>Fax</strong><span class="gold">0231 98190870</span></div>
+            </div>
+
+            <div class="contact-row">
+              <svg viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 7l9 7 9-7"/></svg>
+              <div><strong>E-Mail</strong><span class="gold">info@avantgardetaxi.com</span></div>
+            </div>
+
+            <div class="contact-row">
+              <svg viewBox="0 0 24 24"><path d="M12 22s7-7.7 7-13a7 7 0 10-14 0c0 5.3 7 13 7 13z"/><path d="M12 12a3 3 0 100-6 3 3 0 000 6z"/></svg>
+              <div><strong>Adresse</strong><span class="gold">Rohwedderstraße 6, 44369 Dortmund</span></div>
+            </div>
+
+            <div class="contact-row">
+              <svg viewBox="0 0 24 24"><path d="M12 7v5l3 2"/><path d="M12 3a9 9 0 100 18 9 9 0 000-18"/></svg>
+              <div><strong>Telefonisch erreichbar</strong><span class="gold">06:00 – 17:00 Uhr</span></div>
+            </div>
+
+            <div class="contact-row">
+              <svg viewBox="0 0 24 24"><path d="M3 15h18M5 15l1-4h12l1 4M7 19h0M17 19h0"/></svg>
+              <div><strong>Fahrbetrieb</strong><span class="gold">24 Stunden / 7 Tage die Woche</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card payment-card">
+          <h3>Zahlungsmöglichkeiten</h3>
+          <p>Barzahlung sowie Kartenzahlung über SumUp möglich – unter anderem mit Visa, Mastercard, American Express, Apple Pay und kontaktloser Zahlung.</p>
+
+          <div class="sumup-logo">
+            <img src="sumup-logo.png" alt="SumUp Logo">
+            <div class="sumup-text">sumup</div>
+          </div>
+
+          <div class="cards-row">
+            <div class="pay-pill">
+              <img src="visa.jpg" alt="Visa">
+            </div>
+
+            <div class="pay-pill">
+              <img src="Mastercard.png" alt="Mastercard">
+            </div>
+
+            <div class="pay-pill">
+              <img src="American-Express-Logo.png" alt="American Express">
+            </div>
+
+            <div class="pay-pill">
+              <img src="apllepay.jpg" alt="Apple Pay">
+            </div>
+
+            <div class="pay-pill">
+              <img src="contactlesspay.png" alt="Kontaktlos bezahlen">
+            </div>
+          </div>
+        </div>
+
+        <div class="map-wrap">
+          <iframe
+            class="map-frame"
+            src="https://www.google.com/maps?q=Rohwedderstraße+6,+44369+Dortmund&output=embed"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div id="impressum" class="footer-col">
+        <h3>Impressum</h3>
+        <p>Avantgarde Taxi GmbH Dortmund</p>
+        <p>Rohwedderstraße 6<br>44369 Dortmund</p>
+        <p>Telefon: 0170 5055055<br>E-Mail: info@avantgardetaxi.com</p>
+        <p>Vertreten durch:<br>Geschäftsführer Erhan Cankaya</p>
+        <p>Handelsregister: Amtsgericht Dortmund, HRB 31321</p>
+      </div>
+
+      <div id="datenschutz" class="footer-col">
+        <h3>Datenschutz</h3>
+        <p>Der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Wenn Sie uns telefonisch oder per E-Mail kontaktieren, verarbeiten wir Ihre Angaben zur Bearbeitung Ihrer Anfrage.</p>
+        <p>Diese Website bindet Google Maps ein. Dabei können technisch erforderliche Daten, insbesondere Ihre IP-Adresse, durch Google verarbeitet werden.</p>
+        <p>Verantwortlich: Avantgarde Taxi GmbH Dortmund, Rohwedderstraße 6, 44369 Dortmund, E-Mail: info@avantgardetaxi.com</p>
+      </div>
+
+      <div class="footer-brand">
+        <div class="footer-slogan">Zuverlässig. Sicher. Für Sie da.</div>
+
+        <svg class="car-line" viewBox="0 0 320 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M22 58c18-6 39-10 59-25 16-12 34-20 58-20 23 0 45 8 66 18 17 8 32 12 55 14 18 2 30 7 41 13" fill="none" stroke="#d9a514" stroke-width="4" stroke-linecap="round"/>
+          <path d="M71 60c8 0 14 6 14 14M247 60c8 0 14 6 14 14" fill="none" stroke="#d9a514" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+
+        <div style="font-size:1.6rem;color:#f0bc2a;font-weight:700;">Avantgarde Taxi GmbH Dortmund</div>
+
+        <div class="socials">
+          <div class="social">☎</div>
+          <div class="social">f</div>
+          <div class="social">◎</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright">
+      © 2026 Avantgarde Taxi GmbH Dortmund – Alle Rechte vorbehalten.
+    </div>
+  </footer>
+
+</body>
+</html>
